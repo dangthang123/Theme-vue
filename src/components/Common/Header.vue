@@ -1,83 +1,58 @@
 <template>
-  <header class="header">
-    <p v-if="error">{{ error }}</p>
-    <p v-if="loading">Loading....</p>
-    <div v-else class="container">
-      <nav class="header__nav">
-        <ul class="header__menu">
-          <li class="header__item" v-for="item in items" :key="item.id">
-            <router-link :to="`${item.uri}`" class="header__link">{{
+  <header class="header-main">
+    <div class="container header-inner">
+      <div class="header-logo">
+        <router-link to="/">
+          <img
+            src="https://i0.wp.com/norwaypharmatech.com/wp-content/uploads/2023/05/logo.png?fit=337%2C82&ssl=1"
+          />
+        </router-link>
+      </div>
+      <nav class="header-nav">
+        <p v-if="error">{{ error }}</p>
+        <p v-if="loading">Loading....</p>
+        <ul v-else class="header-menu nav">
+          <li class="header-search">
+            <span class="btn-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+          </li>
+          <li class="header-item" v-for="item in items" :key="item.id">
+            <router-link :to="`${item.uri}`" class="header-link">{{
               item.label
             }}</router-link>
           </li>
         </ul>
       </nav>
+      <div class="header-cart">
+        <ul class="header-cart-nav nav">
+          <li class="header-divider"></li>
+          <li class="cart-item">
+            <div class="header-button">
+              <router-link to="/" class="header-cart-link button">
+                <i class="fa-sharp fa-solid fa-cart-shopping"></i>
+              </router-link>
+            </div>
+            <ul class="nav-dropdown"></ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </header>
 </template>
 
 <script setup>
+import "../../assets/style/header.css";
 import { useQuery } from "@vue/apollo-composable";
 import { computed } from "vue";
-import GET_DATA_MENU from "../../utils/get_menu";
+import GET_DATA_MENU from "../../utils/gql/get_menu";
 
 const { result, loading, error } = useQuery(GET_DATA_MENU);
 
 const items = computed(() => result.value?.menu.menuItems.nodes ?? []);
 
-console.log(items);
+// console.log(items);
 </script>
 <style scoped>
-li {
-  list-style: none;
-}
-
-.container {
-  width: 1600px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 100px;
-  box-shadow: 0px 35px 60px rgba(0, 0, 0, 0.25);
-  background: #fff;
-}
-
-.header__logo {
-  text-transform: uppercase;
-}
-
-.header__menu {
-  display: flex;
-  column-gap: 54px;
-}
-
-.header__link {
-  font-size: 20px;
-  text-transform: uppercase;
-  color: #6a6a6a;
-  text-decoration: none;
-  position: relative;
-}
-
-.header__link::after {
-  content: "";
-  width: 0px;
-  height: 2px;
-  background: blue;
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  transition: 0.3s ease;
-}
-
-.header__link:hover::after {
-  width: 100%;
-  transition: 0.3s ease;
-}
 </style>
 

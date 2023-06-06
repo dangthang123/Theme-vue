@@ -1,6 +1,7 @@
 import { createApp, h, provide } from 'vue';
 import App from './App.vue';
-import './assets/style.css';
+import './assets/style/global _style.css';
+import './assets/style/loading.css';
 import store from './store'
 import router from './router';
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client/core';
