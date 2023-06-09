@@ -21,6 +21,7 @@ export default {
 
         if (existingProduct) {
             const updatedProduct = { ...existingProduct, quantity: existingProduct.quantity + 1 };
+            console.log(updatedProduct);
             commit('updateCartItem', updatedProduct);
         } else {
             const newProduct = { ...product, quantity: 1 };
