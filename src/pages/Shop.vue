@@ -24,9 +24,7 @@ export default {
     const { result, loading } = useQuery(GET_DATA_PRODUCT);
 
     const items = computed(() => result.value?.products.nodes ?? []);
-
-    console.log(items);
-
+    // console.log(items);
     return { items, loading };
   },
 };

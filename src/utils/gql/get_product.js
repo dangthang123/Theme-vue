@@ -12,10 +12,10 @@ const GET_DATA_PRODUCT = gql`
         id
         name
         databaseId
-        price
+        price(format: RAW)
         onSale
-        regularPrice
-        salePrice
+        regularPrice(format: RAW)
+        salePrice(format: RAW)
         description(format: RAW)
         shortDescription(format: RAW)
         reviewCount

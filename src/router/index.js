@@ -3,6 +3,7 @@ import About from "../pages/About.vue"
 import Shop from "../pages/Shop.vue"
 import Contact from "../pages/Contact.vue"
 import ProductDetail from "../pages/DetailPage.vue"
+import CartPage from "../pages/CartPage.vue"
 import { createRouter, createWebHistory } from "vue-router"
 
 const routes = [
@@ -41,6 +42,10 @@ const routes = [
         path: '/product/:slug',
         name: 'product.detail',
         component: ProductDetail,
+    }, {
+        path: '/cart/',
+        name: 'cart',
+        component: CartPage,
     },
 ]
 

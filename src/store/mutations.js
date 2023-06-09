@@ -2,7 +2,7 @@ export default {
     add_todo(state, todo) {
         state.todos.push(todo);
         // state.ttodos = state.todos;
-        console.log(todo);
+        // console.log(todo);
     },
     delete_todo(state, id) {
         state.todos = state.todos.filter((todo) => todo.id !== id);
@@ -18,4 +18,24 @@ export default {
     clear_all_todo(state) {
         state.todos = [];
     },
+
+    // addToCart(state, product) {
+    //     state.cartItems.push(product);
+    //     console.log(state);
+    // }
+
+    setCartItems(state, cartItems) {
+        state.cartItems = cartItems;
+    },
+
+    addCartItem(state, product) {
+        state.cartItems.push(product);
+    },
+    updateCartItem(state, product) {
+        const index = state.cartItems.findIndex(item => item.databaseId === product.databaseId);
+        if (index !== -1) {
+            state.cartItems.splice(index, 1, product);
+        }
+    },
+
 };

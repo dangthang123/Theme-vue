@@ -29,7 +29,7 @@
           <li class="header-divider"></li>
           <li class="cart-item">
             <div class="header-button">
-              <router-link to="/" class="header-cart-link button">
+              <router-link to="/cart" class="header-cart-link button">
                 <i class="fa-sharp fa-solid fa-cart-shopping"></i>
               </router-link>
             </div>

@@ -6,10 +6,7 @@
           <span class="percent-sale"
             ><span class="percent-sale"
               >-{{
-                Math.floor(
-                  100 -
-                    (item.salePrice.slice(1) / item.regularPrice.slice(1)) * 100
-                )
+                Math.floor(100 - (item.salePrice / item.regularPrice) * 100)
               }}%</span
             >
           </span>
@@ -20,7 +17,7 @@
     <div class="product-small">
       <div class="box-product-image">
         <div class="image-fade">
-          <router-link to="#">
+          <router-link :to="`/product/${item.slug}`">
             <img :src="item.featuredImage.node.sourceUrl" alt="img" />
             <img
               v-if="
@@ -63,15 +60,21 @@
           </div>
           <div class="price">
             <span v-if="item.regularPrice" class="regularPrice">{{
-              item.regularPrice
+              formatPrice(item.regularPrice)
             }}</span>
             <span v-if="item.salePrice" class="salePrice">{{
-              item.salePrice
+              formatPrice(item.salePrice)
             }}</span>
           </div>
         </div>
 
-        <div class="add-to-cart-button">Add to cart</div>
+        <router-link
+          to="/cart"
+          class="add-to-cart-button"
+          @click="addToCartClicked(item)"
+        >
+          Add to cart
+        </router-link>
       </div>
     </div>
   </div>
@@ -79,7 +82,7 @@
 
 <script >
 import "../../assets/style/product.css";
-
+import { mapActions } from "vuex";
 export default {
   props: {
     item: {
@@ -87,7 +90,27 @@ export default {
     },
   },
   created() {
-    // console.log(this.item);
+    const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (cartItems && cartItems.length > 0) {
+      this.$store.commit("setCartItems", cartItems);
+    }
+  },
+  methods: {
+    ...mapActions(["addToCart"]),
+
+    addToCartClicked(product) {
+      this.addToCart(product);
+    },
+    formatPrice(price) {
+      if (typeof price === "string") {
+        price = parseFloat(price);
+      }
+      if (typeof price === "number" && !isNaN(price)) {
+        const formattedPrice = price.toFixed(2);
+        return `${formattedPrice} $`;
+      }
+      return price;
+    },
   },
 };
 </script>

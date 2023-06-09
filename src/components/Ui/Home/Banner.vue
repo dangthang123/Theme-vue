@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       imageUrl:
-        "https://cdn-jbohj.nitrocdn.com/eMwJYceWaIHipawjdEwdARbnNvTgpQvo/assets/images/source/rev-f901887/wp-content/uploads/2023/05/banner-1-min.png",
+        "https://cdn-jbohj.nitrocdn.com/eMwJYceWaIHipawjdEwdARbnNvTgpQvo/assets/images/source/rev-a47f8ae/wp-content/uploads/2023/05/banner-1-min.png",
     };
   },
 };
